@@ -1,0 +1,26 @@
+@media screen and (min-width:1439px) {
+    .spacex_filter_wrap .container-fluid {
+        max-width: 1440px;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .spacex_filt_prgmslist>li {
+        width: 49%;
+    }
+}
+
+@media screen and (max-width:991px) {}
+
+@media screen and (max-width:767px) {
+    
+    .spacex_filt_prgmslist>li {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:575px) {}
+
+@media screen and (max-width:320px) {
+    
+}

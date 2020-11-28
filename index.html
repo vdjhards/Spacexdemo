@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>SpacEx Launch programs</title>
+
+
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/responsive.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+</head>
+
+<body>
+  
+
+  <section class="spacex_filter_wrap"  ng-app="myApp" 
+  ng-controller="myController">
+   
+    <div class="container-fluid">
+      <div class="spacex_heading_typ1">
+      <h1>SpacEx Launch programs</h1>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-4">
+          <div class="spacex_filter_sidebardiv">
+            <div class="spacex_heading_typ1">
+              <h2>Filters</h2>
+            </div>
+            <div class="spacex_filtbox">
+              <div class="spacex_heading_typ1">
+                <h3>Launch Year</h3>
+              </div>
+              <div class="spacex_filtbox_typ1">
+                <ul class="list-unstyled spacex_filtbox_list">
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2006}">2006</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2007}">2007</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2008}">2008</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2009}">2009</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2010}">2010</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2011}">2011</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2012}">2012</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2013}">2013</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2014}">2014</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2015}">2015</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2016}">2016</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2017}">2017</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2018}">2018</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2019}">2019</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_year: 2020}">2020</button></li>
+              </ul>  	
+               
+              </div>  
+            </div>
+            <div class="spacex_filtbox">
+              <div class="spacex_heading_typ1">
+                <h3>Successful Launch</h3>
+              </div>
+              <div class="spacex_filtbox_typ1">
+                <ul class="list-unstyled spacex_filtbox_list">
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_success: true}">true</button></li>
+                  
+                  <li><button type="button" class="btn" ng-click="myFilter = {launch_success: false}">false</button></li>                 
+                </ul>  	
+               
+              </div>  
+            </div>
+            <div class="spacex_filtbox">
+              <div class="spacex_heading_typ1">
+                <h3>Successful Landing</h3>           
+              </div>
+              <div class="spacex_filtbox_typ1">
+                <ul class="list-unstyled spacex_filtbox_list">
+                  <li><button type="button" class="btn" ng-click="myFilter = {land_success:true}">true</button></li>
+                  <li><button type="button" class="btn" ng-click="myFilter = {land_success:false}">false</button></li>                 
+                </ul>  	
+               
+              </div>  
+            </div>  
+          </div>  
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-8">
+          <div class="spacex_filter_contentdiv">
+            <ul class="list-unstyled spacex_filt_prgmslist" >
+                <li ng-repeat="spaceprgms in list | filter:myFilter">
+                  <div class="prgrms_item">
+                      <div class="prgrm_img">
+                          <img src="{{spaceprgms.links.mission_patch_small}}" alt="{{spaceprgms.mission_name}}">
+                      </div>
+                      <div class="prgrm_desc">
+                        <div class="prgrm_desc_top">
+                          <div class="spacex_heading_typ1">
+                            <h4 class="prgrm_lbl_prgnm">{{spaceprgms.mission_name}} # {{spaceprgms.flight_number}}</h4>
+                          </div>                         
+                        </div>
+                        
+                        <div class="prgrm_desc_mid">
+                          <p class="prgrm_lbl_mids">Mission Ids:</p>
+                          
+                          <ul ng-if="spaceprgms.mission_id.length > 0" class="list-unstyled prgrms_midlist">
+                            <li ng-repeat="child in spaceprgms.mission_id">
+                              <span class="spce_val">{{child}}</span>
+                            </li>
+                        </ul>
+
+                        <ul ng-if="spaceprgms.mission_id.length === 0" class="list-unstyled prgrms_midlist">
+                          <li><span class="spce_val">NA</span></li>
+                        </ul>  
+                       
+                        </div>  
+                        <div class="prgrm_desc_btm">
+                          <p class="prgrm_lbl_yr">Launch Year:<span class="spce_val">{{spaceprgms.launch_year}}</span></p>
+                          <p class="prgrm_lbl_lnch">Successful Launch:<span class="spce_val">{{spaceprgms.launch_success}}</span></p>
+                          <p class="prgrm_lbl_lndg">Successful Landing:
+                            <span class="spce_val" ng-if="spaceprgms.rocket.first_stage.cores[0].land_success == null">NA</span>
+                            <span class="spce_val" ng-if="spaceprgms.rocket.first_stage.cores[0].land_success == true">{{spaceprgms.rocket.first_stage.cores[0].land_success}}</span>
+                            <span class="spce_val" ng-if="spaceprgms.rocket.first_stage.cores[0].land_success == false">{{spaceprgms.rocket.first_stage.cores[0].land_success}}</span>
+                          </p>
+                        </div>                        
+                      </div>  
+                  </div>  
+                </li>
+                
+            </ul>  
+        </div> 
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xl-12">
+              <div class="spacex_devloper_div">
+                  <p><strong>Developed by:</strong>Hardik Patel</p>
+              </div>  
+           </div>
+      </div>  
+    </div>
+  </section>
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>  
+  <script src="js/main.js"></script>
+</body>
+<script>
+  var app = angular.module('myApp', []);
+  app.controller('myController',
+      function ($scope, $http) {
+
+          var request = {
+              method: 'get',
+              url: 'https://api.spaceXdata.com/v3/launches?limit=100',
+              dataType: 'json',
+              contentType: "application/json"
+          };
+
+          $scope.arrSpaceFlights = new Array;
+
+          $http(request)
+              .success(function (jsonData) {
+                  $scope.arrSpaceFlights = jsonData;
+                  $scope.list = $scope.arrSpaceFlights;
+              })
+              .error(function () {
+
+              });
+              
+      });
+      
+</script>
+
+</html>
+
+
+
