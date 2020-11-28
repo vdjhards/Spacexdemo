@@ -87,6 +87,9 @@ img {
 .spacex_heading_typ1 h4 {
     font-size: 18px;
     color: #474f98;
+    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .spacex_filter_wrap {
